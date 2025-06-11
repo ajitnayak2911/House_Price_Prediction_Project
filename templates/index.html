@@ -1,0 +1,32 @@
+<body>
+    <form action="/predict" method="post">
+        <label>DIS:</label><br>
+        <input type="text" name="DIS"><br>
+        
+        <label>RAD</label><br>
+        <input type="text" name="RAD"><br>
+
+        <label>TAX:</label><br>
+        <input type="text" name="TAX"><br>
+
+        <label>PTRATIO:</label><br>
+        <input type="text" name="PTRATIO"><br>
+
+        <label>B:</label><br>
+        <input type="text" name="B"><br>
+
+        <label>LSTAT:</label><br>
+        <input type="text" name="LSTAT"><br>
+        
+        <br>
+        <input type="submit" value="Predict">
+    
+    </form>
+    
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+
+</body>
+</html>
+
