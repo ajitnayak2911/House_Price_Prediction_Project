@@ -3,124 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <title>House Price Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            height: 100vh;
-            align-items: center;
-            justify-content: center;
+        * {
+            box-sizing: border-box;
         }
 
-        form {
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #f5f7fa);            
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .container {
             background: white;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 500px;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #333;
+            margin-bottom: 25px;
+            color: #2c3e50;
         }
 
         label {
             display: block;
-            margin-top: 10px;
-            font-weight: bold;
-            color: #444;
+            margin-top: 12px;
+            font-weight: 600;
+            color: #333;
         }
 
         input[type="text"] {
             width: 100%;
-            padding: 8px;
-            margin-top: 4px;
+            padding: 10px;
+            margin-top: 6px;
             border: 1px solid #ccc;
             border-radius: 6px;
-            box-sizing: border-box;
+            font-size: 14px;
         }
 
         input[type="submit"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #007bff;
             color: white;
             font-size: 16px;
             font-weight: bold;
             border: none;
             border-radius: 6px;
-            margin-top: 20px;
+            margin-top: 25px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
 
-        .prediction {
+        .prediction-box {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #e6ffe6;
+            color: #2e7d32;
+            font-weight: bold;
             text-align: center;
-            margin-top: 20px;
             font-size: 18px;
-            color: green;
+            border: 1px solid #b2dfdb;
+        }
+
+        @media (max-height: 500px) {
+            body {
+                align-items: flex-start;
+                padding-top: 20px;
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
-    <form action="/predict" method="post">
-        <h2>Enter House Features</h2>
+    <div class="container">
+        <form action="/predict" method="post">
+            <h2>Enter House Features</h2>
 
-        <label>CRIM:</label>
-        <input type="text" name="CRIM">
+            <label for="CRIM">CRIM:</label>
+            <input type="text" name="CRIM" required>
 
-        <label>ZN:</label>
-        <input type="text" name="ZN">
+            <label for="ZN">ZN:</label>
+            <input type="text" name="ZN" required>
 
-        <label>INDUS:</label>
-        <input type="text" name="INDUS">
+            <label for="INDUS">INDUS:</label>
+            <input type="text" name="INDUS" required>
 
-        <label>CHAS:</label>
-        <input type="text" name="CHAS">
+            <label for="CHAS">CHAS:</label>
+            <input type="text" name="CHAS" required>
 
-        <label>NOX:</label>
-        <input type="text" name="NOX">
+            <label for="NOX">NOX:</label>
+            <input type="text" name="NOX" required>
 
-        <label>RM:</label>
-        <input type="text" name="RM">
+            <label for="RM">RM:</label>
+            <input type="text" name="RM" required>
 
-        <label>AGE:</label>
-        <input type="text" name="AGE">
+            <label for="AGE">AGE:</label>
+            <input type="text" name="AGE" required>
 
-        <label>DIS:</label>
-        <input type="text" name="DIS">
-        
-        <label>RAD:</label>
-        <input type="text" name="RAD">
+            <label for="DIS">DIS:</label>
+            <input type="text" name="DIS" required>
 
-        <label>TAX:</label>
-        <input type="text" name="TAX">
+            <label for="RAD">RAD:</label>
+            <input type="text" name="RAD" required>
 
-        <label>PTRATIO:</label>
-        <input type="text" name="PTRATIO">
+            <label for="TAX">TAX:</label>
+            <input type="text" name="TAX" required>
 
-        <label>B:</label>
-        <input type="text" name="B">
+            <label for="PTRATIO">PTRATIO:</label>
+            <input type="text" name="PTRATIO" required>
 
-        <label>LSTAT:</label>
-        <input type="text" name="LSTAT">
-        
-        <input type="submit" value="Predict">
-    </form>
+            <label for="B">B:</label>
+            <input type="text" name="B" required>
 
-    {% if prediction_text %}
-        <div class="prediction">{{ prediction_text }}</div>
-    {% endif %}
+            <label for="LSTAT">LSTAT:</label>
+            <input type="text" name="LSTAT" required>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+            <div class="prediction-box">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+    </div>
 
 </body>
 </html>

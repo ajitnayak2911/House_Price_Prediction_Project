@@ -34,7 +34,7 @@ def predict():
     features_array=np.array(features)
     prediction=model.predict([features_array])
     output=round(prediction[0],2)
-    return render_template('index.html', prediction_text='Predicted House Price: {output}')
+    return render_template('index.html', prediction_text=f'Predicted House Price: {output}')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
